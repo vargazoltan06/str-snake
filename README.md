@@ -35,3 +35,10 @@ A feladatokat négy fájlban találjátok:
 - A zöld alma felvételénél vonjon le a játék 2 pontot.
 - A kígyó ne tudjon jobbra fordulni.
 - Ha 20 pontot elért a játékos nullázódjanak a pontjai.
+
+## Csapatmunka Javaslatok
+- Mutatkozzatok be röviden egymásnak, mielőtt kezditek a munkát.
+- Mindenki válaszoljon három kérdésre:
+1. Kedvenc film
+1. Kedvenc étel
+1. Kedvenc ország
