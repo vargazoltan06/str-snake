@@ -10,7 +10,7 @@ export default class Level {
 
   garden: HTMLDivElement;
 
-  constructor (private generatorFunction: (rows: number, cols: number) => LevelMap) {
+  constructor(private generatorFunction: (rows: number, cols: number) => LevelMap) {
     this.generatorFunction = generatorFunction;
     this.garden = (document.getElementById('garden') as HTMLDivElement);
   }
@@ -24,14 +24,17 @@ export default class Level {
    * @param y {number} - y koordináta
    * @returns {coord} - egy [x, y] koordinátával tér vissza
    */
+  translate(x: number, y: number): coord {
+    return [Math.floor(x) * SIZE, Math.floor(y) * SIZE];
+  }
 
-  remove (): void {
+  remove(): void {
     this.pieces.forEach(piece => {
       piece.remove();
     });
   }
 
-  line (x0: number, y0: number, x1: number, y1: number): void {
+  line(x0: number, y0: number, x1: number, y1: number): void {
     const dx = Math.abs(x1 - x0);
     const dy = Math.abs(y1 - y0);
     const sx = (x0 < x1) ? 1 : -1;
@@ -64,30 +67,30 @@ export default class Level {
    * render method
    * @returns {void}
    */
-  render (): void {
+  render(): void {
     /** 
      * FELADAT!
      * @var {number} cols - this.garden.clientHeight és SIZE hányadosa, 
      * lefelé kerekítve 
      */
+    var cols: number = Math.floor(this.garden.clientHeight / SIZE);
 
-    
-    
+
     /** 
      * FELADAT!
      * @var {number} rows - this.garden.clientWidth és SIZE hányadosa, 
      * lefelé kerekítve 
      */
+    var rows: number = Math.floor(this.garden.clientWidth / SIZE);
 
-    
-    
+
     /** 
      * FELADAT!
      * @var {LevelMap} level - this.generatorFunction által visszaadott érték, 
      * a rows és cols paraméterekkel
      */
+    var level: LevelMap = this.generatorFunction(rows, cols);
 
-    
 
     level.forEach(line => {
       const [x0, y0]: coord = line[0];
@@ -97,16 +100,16 @@ export default class Level {
        * Olvasd ki a fenti sorhoz hasonlóan az x1 és y1 koodrinátákat is, 
        * a line második eleméből!
        */
+      const [x1, y1]: coord = line[1];
 
-      
 
       /**
        * FELADAT!
        * Hívd meg a this.line metódust és add neki át az x0, y0, x1, y1 
        * értékeket.
        */
+      this.line(x0, y0, x1, y1);
 
-      
 
     });
   }
