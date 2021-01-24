@@ -481,25 +481,14 @@ export default class Game extends BaseGame {
     }
 
     mayIHaveGoldenApple(): boolean {
-      let chance: number = 5;
-      let pick: number  = Math.random() * 100;
+      const chance: number = 5;
+      const pick: number  = Math.random() * 100;
       return pick < chance;
     }
 
-    /**
-     * @returns {void}
-     * A metódus feladatai:
-     * 1. keresd meg a DOM -ban az összes .vertical-grid és .horizontal-grid 
-     * elemet
-     * 2. mentsd el őket egy grids nevű változóba
-     * 3. járd be a tömböt, és minden elemére hívd meg a Utils.removeNode 
-     * metódust, hogy eltávolítsd őket az oldalról
-     * 4. a this.gridVisible értékét állítsd false -ra
-     */
     removeGrid (): void {
-
-      let grids: Element[];
-
+      const grids = document.querySelectorAll(".vertical-grid,.horizontal-grid");
+      grids.forEach(element => Utils.removeNode(element));
       this.gridVisible = false;
     }
 }
