@@ -53,9 +53,17 @@ interface IPiece {
  * Pótold a hiányzó tulajdonságokat és metódusokat az interfész alapján.
  */
 export default class Piece implements IPiece {
-  
-  
-  
+
+  //feladat A-Balint
+  next: Piece | null;
+  prev: Piece | null;
+  x: number;
+  y: number;
+  el: HTMLDivElement;
+  direction: string;
+  type: string;
+  garden: HTMLDivElement;
+
   constructor({
     x,
     y,
@@ -79,6 +87,31 @@ export default class Piece implements IPiece {
     // this.applyClass();
     this.garden.appendChild(this.el);
   }
+
+  //feladat A-Balint
+  setType(type: string): void {
+    this.type = type;
+    this.applyClass();
+  };
+
+  //feladat A-Balint
+  applyClass(): void {
+    this.el.className = '';
+    this.el.classList.add('cell', this.type, this.direction);
+  };
+
+  //feladat A-Balint
+  isCollidingWith(node: Piece | null): boolean {
+    if (node === null) {
+      return false;
+    } else {
+      if (this.x === node.x && this.y === node.y) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
 
   bend(headDirection: string) {
     if (this.direction !== headDirection) {
